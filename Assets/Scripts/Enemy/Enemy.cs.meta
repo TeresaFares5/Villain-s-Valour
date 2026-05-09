@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b03ec2caf44647948b5b78519824dba3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rgdbd2d: {instanceID: 0}
+  - eldestWandButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

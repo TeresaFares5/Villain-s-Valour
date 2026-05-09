@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4db98843b833a4c915e72140250f98, type: 3}
+  m_Name: Whip
+  m_EditorClassIdentifier: 
+  Name: Sword
+  stats:
+    damage: 100
+    timeToAttack: 1.5
+    numberOfAttacks: 1
+  weaponBasePrefab: {fileID: 5660275041710216601, guid: 3a8da2cae3754c44e9cb2984f580c806, type: 3}
+  upgrades:
+  - {fileID: 11400000, guid: dc1fda0db1bb2964da9741663bbe262c, type: 2}
+  - {fileID: 11400000, guid: dc1fda0db1bb2964da9741663bbe262c, type: 2}
+  - {fileID: 11400000, guid: dc1fda0db1bb2964da9741663bbe262c, type: 2}
+  - {fileID: 11400000, guid: dc1fda0db1bb2964da9741663bbe262c, type: 2}
+  - {fileID: 11400000, guid: dc1fda0db1bb2964da9741663bbe262c, type: 2}
