@@ -54,7 +54,7 @@ public class EldestWand : MonoBehaviour
 
             // Create and shoot a projectile
             GameObject newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+            newProjectile.GetComponent<Rigidbody2D>().linearVelocity = direction * projectileSpeed;
         }
         else
         {

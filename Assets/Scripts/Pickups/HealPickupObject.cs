@@ -23,7 +23,7 @@ public class HealPickupObject : MonoBehaviour,IPickUpObject
         if (hasTarget)
         {
             Vector2 targetDirection = (targetPosition - transform.position).normalized;
-            rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
+            rb.linearVelocity = new Vector2(targetDirection.x, targetDirection.y) * moveSpeed;
         }
     }
 

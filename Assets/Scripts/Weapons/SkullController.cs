@@ -53,7 +53,7 @@ public class SkullController : MonoBehaviour
                 Rigidbody2D skullRb = skull.GetComponent<Rigidbody2D>();
 
                 // Apply the throw force
-                skullRb.velocity = new Vector2(throwDirection * throwForce, throwForce);
+                skullRb.linearVelocity = new Vector2(throwDirection * throwForce, throwForce);
 
                 // Apply random horizontal force
                 float randomHorizontalForce = Random.Range(-horizontalForce, horizontalForce);

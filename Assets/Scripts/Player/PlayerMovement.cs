@@ -76,6 +76,6 @@ public class PlayerMovement : MonoBehaviour
 
         movementVector *= speed;
 
-        rgbd2d.velocity = movementVector;
+        rgbd2d.linearVelocity = movementVector;
     }
 }

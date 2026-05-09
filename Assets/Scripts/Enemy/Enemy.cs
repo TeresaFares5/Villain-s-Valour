@@ -1,10 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Unity.Entities;
-using Unity.Jobs;
-using Unity.Transforms;
-using Unity.Mathematics;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -113,7 +110,7 @@ public class Enemy : MonoBehaviour
                 else if (direction.x > 0)
                     transform.localScale = new Vector3(1, 1, 1);        // Flip the enemy sprite based on the target's position
 
-                rgdbd2d.velocity = direction * speed;         // Move towards the target
+                rgdbd2d.linearVelocity = direction * speed;         // Move towards the target
         }
     }
 
@@ -188,22 +185,5 @@ public class Enemy : MonoBehaviour
     }
 }
 
-public partial class MovementSpeedSystem : SystemBase
-{
-    protected override void OnUpdate()
-    {
-        float deltaTime = Time.DeltaTime;
 
-        Entities
-            .ForEach((ref Translation position, in Enemy enemy) =>
-            {
-                float3 displacement = enemy.speed * deltaTime;
-                position.Value += displacement;
-            })
-            .WithoutBurst()
-            .Run();
-
-        CompleteDependency();
-    }
-}
 

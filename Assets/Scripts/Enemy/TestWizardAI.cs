@@ -54,11 +54,11 @@ public class TestWizardAI : MonoBehaviour
         if (distanceToPlayer > stoppingRadius)
         {
             Vector2 direction = (player.position - transform.position).normalized;
-            rb.velocity = direction * movementSpeed;
+            rb.linearVelocity = direction * movementSpeed;
         }
         else
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
         }
     }
 

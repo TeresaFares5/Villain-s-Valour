@@ -81,7 +81,7 @@ public class PlayerMoveJoystick:MonoBehaviour
 
         movementVector *= speed;
 
-        rgbd2d.velocity = movementVector;
+        rgbd2d.linearVelocity = movementVector;
     
     }
 private void FlipWeaponLeft()

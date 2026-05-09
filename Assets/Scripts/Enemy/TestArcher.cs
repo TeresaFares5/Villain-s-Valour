@@ -59,7 +59,7 @@ public class TestArcher : MonoBehaviour
         arrow.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
         Rigidbody2D arrowRigidbody = arrow.GetComponent<Rigidbody2D>();
-        arrowRigidbody.velocity = direction * arrowSpeed;
+        arrowRigidbody.linearVelocity = direction * arrowSpeed;
 
         animator.SetTrigger("Attack");
     }
