@@ -35,7 +35,7 @@ public class WeaponManager : MonoBehaviour
         Level level = GetComponent<Level>();
         if(level != null)
         {
-            //level.AddUpgradesIntoTheListOfAvailableUpgrades(weaponData.upgrades);
+            level.AddUpgradesIntoTheListOfAvailableUpgrades(weaponData.upgrades);
         }
     }
 

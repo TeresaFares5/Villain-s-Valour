@@ -29,6 +29,9 @@ public class UpgradePanelManager : MonoBehaviour
     }
     public void OpenPanel(List<UpgradeData> upgradeDatas)
     {
+        Debug.Log("OPEN PANEL CALLED");
+        Debug.Log("Upgrade options received: " + upgradeDatas.Count);
+
         Clean();
         Time.timeScale = 0;
         lvlUp.Play();

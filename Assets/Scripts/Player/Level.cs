@@ -119,13 +119,20 @@ public class Level : MonoBehaviour
                 break;
             case UpgradeType.WeaponGet:
 
-                weaponManager.AddWeapon(upgradeData.weaponData);
-                if (upgradeDisplay.weaponSlotsParent.Count != 0)
-                {
-                    upgradeDisplay.DisplayWeapon(upgradeData.item);
-                    upgradeDisplay.weaponSlotsParent.RemoveAt(0);
-                }
-                break;
+    weaponManager.AddWeapon(upgradeData.weaponData);
+
+    if (upgradeData.weaponData != null)
+    {
+        AddUpgradesIntoTheListOfAvailableUpgrades(upgradeData.weaponData.upgrades);
+    }
+
+    if (upgradeDisplay.upgradeSlotsParent.Count != 0)
+    {
+        upgradeDisplay.DisplayIcon(upgradeData.icon);
+        upgradeDisplay.upgradeSlotsParent.RemoveAt(0);
+    }
+
+    break;
             case UpgradeType.ItemGet:
                 passiveItems.Equip(upgradeData.item);
                 AddUpgradesIntoTheListOfAvailableUpgrades(upgradeData.item.upgrades);

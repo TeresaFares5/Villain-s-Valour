@@ -13,39 +13,66 @@ public class UpgradeDisplay : MonoBehaviour
 
     private void Start()
     {
-        //DisplayUpgrade(upgradeItem);
         level = FindObjectOfType<Level>();
     }
 
     public void DisplayUpgrade(Item upgrade)
     {
-            GameObject slot = Instantiate(upgradeSlotPrefab, upgradeSlotsParent[0]);
-            Image slotImage = slot.GetComponent<Image>();
+        if (upgradeSlotsParent.Count == 0)
+        {
+            return;
+        }
 
-            if (upgrade.upgrades.Count > 0)
-            {
-                Sprite upgradeIcon = upgrade.upgrades[0].icon;
-                slotImage.sprite = upgradeIcon;
-            }
+        GameObject slot = Instantiate(upgradeSlotPrefab, upgradeSlotsParent[0]);
+        Image slotImage = slot.GetComponent<Image>();
+
+        if (upgrade.upgrades.Count > 0)
+        {
+            Sprite upgradeIcon = upgrade.upgrades[0].icon;
+            slotImage.sprite = upgradeIcon;
+        }
     }   
+
     public void DisplayIcon(Sprite sprite)
     {
-            GameObject slot = Instantiate(upgradeSlotPrefab, upgradeSlotsParent[0]);
-            Image slotImage = slot.GetComponent<Image>();
+        if (upgradeSlotsParent.Count == 0)
+        {
+            return;
+        }
 
-            Sprite upgradeIcon =sprite;
-            slotImage.sprite = upgradeIcon;
-            
+        GameObject slot = Instantiate(upgradeSlotPrefab, upgradeSlotsParent[0]);
+        Image slotImage = slot.GetComponent<Image>();
+
+        slotImage.sprite = sprite;
     }  
+
     public void DisplayWeapon(Item upgrade)
     {
-            GameObject slot = Instantiate(upgradeSlotPrefab, weaponSlotsParent[0]);
-            Image slotImage = slot.GetComponent<Image>();
+        if (weaponSlotsParent.Count == 0)
+        {
+            return;
+        }
 
-            if (upgrade.upgrades.Count > 0)
-            {
-                Sprite upgradeIcon = upgrade.upgrades[0].icon;
-                slotImage.sprite = upgradeIcon;
-            }
+        GameObject slot = Instantiate(upgradeSlotPrefab, weaponSlotsParent[0]);
+        Image slotImage = slot.GetComponent<Image>();
+
+        if (upgrade.upgrades.Count > 0)
+        {
+            Sprite upgradeIcon = upgrade.upgrades[0].icon;
+            slotImage.sprite = upgradeIcon;
+        }
+    }
+
+    public void DisplayWeaponIcon(Sprite sprite)
+    {
+        if (weaponSlotsParent.Count == 0)
+        {
+            return;
+        }
+
+        GameObject slot = Instantiate(upgradeSlotPrefab, weaponSlotsParent[0]);
+        Image slotImage = slot.GetComponent<Image>();
+
+        slotImage.sprite = sprite;
     }
 }

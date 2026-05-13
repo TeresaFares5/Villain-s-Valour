@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject panel;
     PauseManager pauseManager;
     public GameObject levelupMenu;
+    public GameObject icons;
 
     private void Awake()
     {
@@ -34,7 +35,20 @@ public class MainMenu : MonoBehaviour
 {
     pauseManager.UnPauseGame();
     panel.SetActive(false);
+    CloseIcons();
 }
+
+    public void Icons()
+{
+    icons.SetActive(true);
+}
+
+public void CloseIcons()
+    {
+    icons.SetActive(false);
+    }
+
+
 
     //    public void OpenMenu()
     //    {

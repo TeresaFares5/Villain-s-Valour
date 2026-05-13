@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
     public int creditsCost;
 
     public AudioSource error;
+    public AudioSource success;
 
     [Header("Health Buttons")]
     public UnityEngine.UI.Button healthButton;
@@ -51,6 +52,7 @@ public class ShopManager : MonoBehaviour
         LoadData();
         UpdateCoinsText();
     }
+
     private void Update()
     {
         if (ShopGameManager.Instance.dataContainer.creditsBought == 1)
@@ -67,6 +69,7 @@ public class ShopManager : MonoBehaviour
         {
             strengthLock.enabled = true;
         }
+
         if (ShopGameManager.Instance.dataContainer.speedUnlocked >= 1)
         {
             speedLock.enabled = false;
@@ -75,6 +78,7 @@ public class ShopManager : MonoBehaviour
         {
             speedLock.enabled = true;
         }
+
         if (ShopGameManager.Instance.dataContainer.creditsUnlocked >= 1)
         {
             creditsLock.enabled = false;
@@ -88,51 +92,57 @@ public class ShopManager : MonoBehaviour
         {
             healthButton.GetComponent<Image>().sprite = healthCopper;
         }
+
         if (ShopGameManager.Instance.dataContainer.healthUpgrades == 1)
         {
             healthButton.GetComponent<Image>().sprite = healthSilver;
         }
+
         if (ShopGameManager.Instance.dataContainer.healthUpgrades == 2)
         {
             healthButton.GetComponent<Image>().sprite = healthGold;
         }
+
         if (ShopGameManager.Instance.dataContainer.healthUpgrades == 3)
         {
             healthButton.GetComponent<Image>().sprite = healthAmethyst;
         }
 
-
-
         if (ShopGameManager.Instance.dataContainer.damageUpgrades == 0)
         {
             damageButtons.GetComponent<Image>().sprite = damageCopper;
         }
+
         if (ShopGameManager.Instance.dataContainer.damageUpgrades == 1)
         {
             damageButtons.GetComponent<Image>().sprite = damageSilver;
         }
+
         if (ShopGameManager.Instance.dataContainer.damageUpgrades == 2)
         {
             damageButtons.GetComponent<Image>().sprite = damageGold;
         }
+
         if (ShopGameManager.Instance.dataContainer.damageUpgrades == 3)
         {
             damageButtons.GetComponent<Image>().sprite = damageAmethyst;
         }
 
-
         if (ShopGameManager.Instance.dataContainer.speedUpgrades == 0)
         {
             speedButtons.GetComponent<Image>().sprite = speedCopper;
         }
+
         if (ShopGameManager.Instance.dataContainer.speedUpgrades == 1)
         {
             speedButtons.GetComponent<Image>().sprite = speedSilver;
         }
+
         if (ShopGameManager.Instance.dataContainer.speedUpgrades == 2)
         {
             speedButtons.GetComponent<Image>().sprite = speedGold;
         }
+
         if (ShopGameManager.Instance.dataContainer.speedUpgrades == 3)
         {
             speedButtons.GetComponent<Image>().sprite = speedAmethyst;
@@ -147,11 +157,19 @@ public class ShopManager : MonoBehaviour
             {
                 ShopGameManager.Instance.dataContainer.healthUpgrades += 1;
                 ShopGameManager.Instance.dataContainer.coins -= healthCost;
+
                 int maxHp = PlayerPrefs.GetInt("maxHp");
                 int increase = Mathf.RoundToInt(maxHp * 0.1f);
                 ShopGameManager.Instance.dataContainer.addedHealth += increase;
+
                 SaveData();
                 UpdateCoinsText();
+
+                if (success != null)
+                {
+                    success.Play();
+                }
+
                 Debug.Log("health");
             }
             else
@@ -159,122 +177,164 @@ public class ShopManager : MonoBehaviour
                 error.Play();
             }
         }
-
         else
         {
             error.Play();
         }
-
     }
 
     public void Damage()
+{
+    if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.strengthUnlocked >= 1)
     {
-
-        if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.strengthUnlocked >= 1)
+        if (ShopGameManager.Instance.dataContainer.damageUpgrades < 3)
         {
-
-            if (ShopGameManager.Instance.dataContainer.damageUpgrades < 3)
+            if (ShopGameManager.Instance.dataContainer.strengthUnlocked == 0)
             {
-                if (ShopGameManager.Instance.dataContainer.strengthUnlocked == 0)
-                {
-                    strengthLock.enabled = false;
-                    print("unlocked");
-                    ShopGameManager.Instance.dataContainer.strengthUnlocked++;
-                    ShopGameManager.Instance.dataContainer.keys -= 1;
-                    SaveData();
-                }
-                if (ShopGameManager.Instance.dataContainer.coins >= damageCost)
-                {
-                    ShopGameManager.Instance.dataContainer.damageUpgrades += 1;
-                    ShopGameManager.Instance.dataContainer.coins -= damageCost;
-                    ShopGameManager.Instance.dataContainer.addedDamage += 100;
-                    SaveData();
-                    UpdateCoinsText();
-
-                }
-                else
-                {
-                    error.Play();
-                }
-            }
-        }
-        else
-        {
-            error.Play();
-        }
-
-    }
-
-    public void Speed()
-    {
-        if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.speedUnlocked >= 1)
-        {
-            if (ShopGameManager.Instance.dataContainer.speedUpgrades < 3)
-            {
-                if (ShopGameManager.Instance.dataContainer.speedUnlocked == 0)
-                {
-                    speedLock.enabled = false;
-                    print("unlocked");
-                    ShopGameManager.Instance.dataContainer.speedUnlocked++;
-                    ShopGameManager.Instance.dataContainer.keys -= 1;
-                    SaveData();
-                }
-                if (ShopGameManager.Instance.dataContainer.coins >= speedCost)
-                {
-                    ShopGameManager.Instance.dataContainer.speedUpgrades += 1;
-                    ShopGameManager.Instance.dataContainer.coins -= speedCost;
-                    int originalSpeed = PlayerPrefs.GetInt("originalSpeed");
-                    int speedIncrease = Mathf.RoundToInt(originalSpeed * 0.1f);
-                    ShopGameManager.Instance.dataContainer.speed += speedIncrease;
-                    SaveData();
-                    UpdateCoinsText();
-                }
-                else
-                {
-                    error.Play();
-                }
-            }
-        }
-
-        else
-        {
-            error.Play();
-        }
-    }
-    public void Credits()
-    {
-        if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.creditsUnlocked >= 1)
-        {
-            if (ShopGameManager.Instance.dataContainer.creditsUnlocked == 0)
-            {
-                creditsLock.enabled = false;
+                strengthLock.enabled = false;
                 print("unlocked");
-                ShopGameManager.Instance.dataContainer.creditsUnlocked++;
+
+                ShopGameManager.Instance.dataContainer.strengthUnlocked++;
                 ShopGameManager.Instance.dataContainer.keys -= 1;
+
                 SaveData();
+
+                return; // Stops here after unlocking
             }
-            if (ShopGameManager.Instance.dataContainer.coins >= creditsCost)
+
+            if (ShopGameManager.Instance.dataContainer.coins >= damageCost)
             {
-                SceneManager.LoadScene("Credits");
-                ShopGameManager.Instance.dataContainer.coins -= creditsCost;
-                ShopGameManager.Instance.dataContainer.creditsBought++;
+                ShopGameManager.Instance.dataContainer.damageUpgrades += 1;
+                ShopGameManager.Instance.dataContainer.coins -= damageCost;
+                ShopGameManager.Instance.dataContainer.addedDamage += 100;
+
                 SaveData();
                 UpdateCoinsText();
+
+                if (success != null)
+                {
+                    success.Play();
+                }
             }
-            if (ShopGameManager.Instance.dataContainer.creditsBought == 1)
+            else
             {
-                SceneManager.LoadScene("Credits");
-                nameCredits.text = "Credits";
-                costCredits.text = "";
+                error.Play();
             }
         }
+        else
+        {
+            error.Play();
+        }
+    }
+    else
+    {
+        error.Play();
+    }
+}
+
+    public void Speed()
+{
+    if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.speedUnlocked >= 1)
+    {
+        if (ShopGameManager.Instance.dataContainer.speedUpgrades < 3)
+        {
+            if (ShopGameManager.Instance.dataContainer.speedUnlocked == 0)
+            {
+                speedLock.enabled = false;
+                print("unlocked");
+
+                ShopGameManager.Instance.dataContainer.speedUnlocked++;
+                ShopGameManager.Instance.dataContainer.keys -= 1;
+
+                SaveData();
+
+                return; // Stops here after unlocking
+            }
+
+            if (ShopGameManager.Instance.dataContainer.coins >= speedCost)
+            {
+                ShopGameManager.Instance.dataContainer.speedUpgrades += 1;
+                ShopGameManager.Instance.dataContainer.coins -= speedCost;
+
+                int originalSpeed = PlayerPrefs.GetInt("originalSpeed");
+                int speedIncrease = Mathf.RoundToInt(originalSpeed * 0.1f);
+                ShopGameManager.Instance.dataContainer.speed += speedIncrease;
+
+                SaveData();
+                UpdateCoinsText();
+
+                if (success != null)
+                {
+                    success.Play();
+                }
+            }
+            else
+            {
+                error.Play();
+            }
+        }
+        else
+        {
+            error.Play();
+        }
+    }
+    else
+    {
+        error.Play();
+    }
+}
+    public void Credits()
+    {
+        LoadData();
+
+        // Already bought credits
+        if (ShopGameManager.Instance.dataContainer.creditsBought == 1)
+        {
+            SceneManager.LoadScene("Credits");
+            return;
+        }
+
+        // Locked AND no key
+        if (ShopGameManager.Instance.dataContainer.creditsUnlocked == 0 &&
+            ShopGameManager.Instance.dataContainer.keys < 1)
+        {
+            if (error != null) error.Play();
+            return;
+        }
+
+        // Unlock with key first
+        if (ShopGameManager.Instance.dataContainer.creditsUnlocked == 0)
+        {
+            creditsLock.enabled = false;
+            print("Credits unlocked");
+
+            ShopGameManager.Instance.dataContainer.creditsUnlocked = 1;
+            ShopGameManager.Instance.dataContainer.keys -= 1;
+
+            SaveData();
+        }
+
+        // Not enough coins
+        if (ShopGameManager.Instance.dataContainer.coins < creditsCost)
+        {
+            if (error != null) error.Play();
+            return;
+        }
+
+        // Buy credits
+        ShopGameManager.Instance.dataContainer.coins -= creditsCost;
+        ShopGameManager.Instance.dataContainer.creditsBought = 1;
+
+        SaveData();
+        UpdateCoinsText();
+
+        SceneManager.LoadScene("Credits");
     }
 
     private void UpdateCoinsText()
     {
         coinsText.text = ShopGameManager.Instance.dataContainer.coins.ToString();
     }
-
 
     private void LoadData()
     {
@@ -286,4 +346,3 @@ public class ShopManager : MonoBehaviour
         ShopGameManager.Instance.SaveData();
     }
 }
-

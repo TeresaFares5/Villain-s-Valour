@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -8,22 +7,23 @@ public class TypewriterEffect : MonoBehaviour
 {
     public float delay = 0.1f;
     public string[] fullTexts;
-    private string currentText = "";
+
     private TMP_Text tmpText;
     private int currentLayer = 0;
-    private int charCounter = 0;
-    public AudioClip typeSound;
-    public AudioSource audioSource;
     private bool isTyping = true;
 
+    public AudioClip typeSound;
+    private AudioSource audioSource;
+
     public string sceneName;
-    public GameObject usernameInput;
 
     void Start()
     {
         tmpText = GetComponent<TMP_Text>();
-        StartCoroutine(ShowText());
+
         audioSource = gameObject.AddComponent<AudioSource>();
+
+        StartCoroutine(ShowText());
     }
 
     void Update()
@@ -32,7 +32,8 @@ public class TypewriterEffect : MonoBehaviour
         {
             if (isTyping)
             {
-                StopCoroutine(ShowText());
+                // Instantly finish current text
+                StopAllCoroutines();
                 tmpText.text = fullTexts[currentLayer];
                 isTyping = false;
             }
@@ -43,44 +44,29 @@ public class TypewriterEffect : MonoBehaviour
                 if (currentLayer < fullTexts.Length)
                 {
                     tmpText.text = "";
-                    isTyping = true;
-                    DisplayText();
+                    StartCoroutine(ShowText());
                 }
                 else
                 {
-                    usernameInput.SetActive(true);
+                    // Load next scene
+                    SceneManager.LoadScene(sceneName);
                 }
             }
-        }
-    }
-
-    public void Enter()
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    void DisplayText()
-    {
-        if (isTyping)
-        {
-            StartCoroutine(ShowText());
         }
     }
 
     IEnumerator ShowText()
     {
-        charCounter = 0;
-        while (charCounter < fullTexts[currentLayer].Length && isTyping)
-        {
-            currentText = fullTexts[currentLayer].Substring(0, charCounter + 1);
-            tmpText.text = currentText;
+        isTyping = true;
 
-            if (charCounter % 2 == 0)
+        for (int i = 0; i < fullTexts[currentLayer].Length; i++)
+        {
+            tmpText.text = fullTexts[currentLayer].Substring(0, i + 1);
+
+            if (i % 2 == 0 && typeSound != null)
             {
                 audioSource.PlayOneShot(typeSound);
             }
-
-            charCounter++;
 
             yield return new WaitForSeconds(delay);
         }
@@ -88,4 +74,3 @@ public class TypewriterEffect : MonoBehaviour
         isTyping = false;
     }
 }
-

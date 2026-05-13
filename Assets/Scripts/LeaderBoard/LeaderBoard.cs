@@ -9,10 +9,10 @@ public class LeaderBoard : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> scores;
 
     [Header("LootLocker")]
-    [SerializeField] private string leaderboardKey = "Leaderboard";
+    [SerializeField] private string leaderboardKey = "leaderboard";
     [SerializeField] private int maxResults = 10;
 
-    private bool sessionStarted = false;
+    private bool sessionStarted;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class LeaderBoard : MonoBehaviour
             }
             else
             {
-                Debug.LogError("LootLocker connection failed: " + response.errorData.message);
+                Debug.LogError("LootLocker session failed: " + response.text);
             }
         });
     }
@@ -48,7 +48,7 @@ public class LeaderBoard : MonoBehaviour
         {
             if (!response.success)
             {
-                Debug.LogError("Could not get leaderboard: " + response.errorData.message);
+                Debug.LogError("Get leaderboard failed: " + response.text);
                 return;
             }
 
@@ -57,10 +57,13 @@ public class LeaderBoard : MonoBehaviour
             int loopLength = Mathf.Min(response.items.Length, names.Count, scores.Count);
 
             for (int i = 0; i < loopLength; i++)
-            {
-                names[i].text = response.items[i].member_id;
-                scores[i].text = response.items[i].score.ToString();
-            }
+{
+    names[i].text = response.items[i].player.name;
+    scores[i].text = response.items[i].score.ToString();
+
+    names[i].ForceMeshUpdate();
+    scores[i].ForceMeshUpdate();
+}
         });
     }
 
@@ -73,22 +76,41 @@ public class LeaderBoard : MonoBehaviour
         }
 
         if (string.IsNullOrWhiteSpace(username))
-        {
             username = "Player";
+
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+
+        if (score <= bestScore)
+        {
+            Debug.Log("Score not submitted because it is not higher than best score.");
+            GetLeaderboard();
+            return;
         }
 
-        LootLockerSDKManager.SubmitScore(username, score, leaderboardKey, response =>
+        PlayerPrefs.SetInt("BestScore", score);
+        PlayerPrefs.Save();
+
+       LootLockerSDKManager.SetPlayerName(username, nameResponse =>
+{
+    if (!nameResponse.success)
+    {
+        Debug.LogError("Set name failed: " + nameResponse.text);
+        return;
+    }
+
+    LootLockerSDKManager.SubmitScore("", score, leaderboardKey, response =>
+    {
+        if (response.success)
         {
-            if (response.success)
-            {
-                Debug.Log("Score submitted");
-                GetLeaderboard();
-            }
-            else
-            {
-                Debug.LogError("Could not submit score: " + response.errorData.message);
-            }
-        });
+            Debug.Log("Score submitted");
+            GetLeaderboard();
+        }
+        else
+        {
+            Debug.LogError("Submit failed: " + response.text);
+        }
+    });
+});
     }
 
     private void ClearLeaderboardUI()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dfb554e7bd13740905dfcaf0c9f76d, type: 3}
   m_Name: ThrowingKnife
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Throwing Knife
   stats:
     armour: 0
     coins: 0
@@ -20,6 +20,20 @@ MonoBehaviour:
     canUseManualWeapon: 0
     canUseSkulls: 0
     skullCount: 0
+    hasRemy: 0
+    hasCheese: 0
+    cheeseRush: 0
+    power: 0
+    triangleOfPower: 0
+    wisdom: 0
+    triangleOfWisdom: 0
+    courage: 0
+    triangleOfCourage: 0
+    SacredTriangle: 0
+    eldestWand: 0
+    nobody: 0
+    hasNobody: 0
+    hasStrangeHead: 0
+    iceShards: 0
   upgrades:
-  - {fileID: 11400000, guid: 90e003a7ae7881341ba7502edd1f61cb, type: 2}
   - {fileID: 11400000, guid: e4e28f6ea1b139f42814b26893efcbeb, type: 2}

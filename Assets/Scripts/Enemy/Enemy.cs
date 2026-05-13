@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
 
     public Sprite cheese;
 
+    private float originalSpeed;
+
     private void Awake()    //calling all the following components
     {
         rgdbd2d = GetComponent<Rigidbody2D>();
@@ -45,6 +47,7 @@ public class Enemy : MonoBehaviour
         useManualWeapon = gameManager.GetComponent<UseManualWeapon>();
         enemyManager = FindObjectOfType<EnemyManager>();
         cheese =Resources.Load<Sprite>("Cheese");
+        originalSpeed = speed;
 
         if (enemyManager != null)
         {
@@ -82,11 +85,23 @@ public class Enemy : MonoBehaviour
             bossSpawn.enemiesKilled += 1;        //adds to player score
         }
         if (other.CompareTag("IceShards"))
-        {
-            speed -= speed * 0.8f;
-        }
+{
+    speed = originalSpeed * 0.2f;
+
+    spriteRenderer.color = new Color(0.35f, 0.65f, 1f);
+}
 
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+{
+    if (other.CompareTag("IceShards"))
+    {
+        speed = originalSpeed;
+
+        spriteRenderer.color = originalColor;
+    }
+}
 
     private void UpdateHpBar()
     {

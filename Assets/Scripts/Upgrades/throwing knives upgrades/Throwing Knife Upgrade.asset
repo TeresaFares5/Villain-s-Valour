@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Throwing Knife Upgrade
   m_EditorClassIdentifier: 
   upgradeType: 0
-  icon: {fileID: 21300000, guid: 582d670811bafac43aae893e46ca1f97, type: 3}
+  icon: {fileID: 21300000, guid: 224072ab8055a1f4db0805a9d156087b, type: 3}
   name: MORE DAGGERS!
   description: Dagger Upgrade
   quote: Pierce more hearts
@@ -30,3 +30,18 @@ MonoBehaviour:
     canUseManualWeapon: 0
     canUseSkulls: 0
     skullCount: 0
+    hasRemy: 0
+    hasCheese: 0
+    cheeseRush: 0
+    power: 0
+    triangleOfPower: 0
+    wisdom: 0
+    triangleOfWisdom: 0
+    courage: 0
+    triangleOfCourage: 0
+    SacredTriangle: 0
+    eldestWand: 0
+    nobody: 0
+    hasNobody: 0
+    hasStrangeHead: 0
+    iceShards: 0

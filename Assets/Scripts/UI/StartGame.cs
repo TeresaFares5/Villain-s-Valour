@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     public Image shopLock;
+    public AudioSource error;
 
     private void Update()
     {
@@ -38,26 +39,37 @@ public class StartGame : MonoBehaviour
         }
 
     }
+public void Shop()
+{
+    LoadData();
 
-    public void Shop()
+    // If player has a key OR shop is already unlocked
+    if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.shopUnlocked >= 1)
     {
-
-        if (ShopGameManager.Instance.dataContainer.keys >= 1 || ShopGameManager.Instance.dataContainer.shopUnlocked >= 1)
+        // If shop is locked but player has a key, unlock it first
+        if (ShopGameManager.Instance.dataContainer.shopUnlocked == 0)
         {
-            SceneManager.LoadScene("Shop");
-            Time.timeScale = 1f;
+            shopLock.enabled = false;
+            print("unlocked");
 
-            if (ShopGameManager.Instance.dataContainer.shopUnlocked == 0)
-            {
-                shopLock.enabled = false;
-                print("unlocked");
-                ShopGameManager.Instance.dataContainer.shopUnlocked++;
-                ShopGameManager.Instance.dataContainer.keys -= 1;
-                SaveData();
-            }
+            ShopGameManager.Instance.dataContainer.shopUnlocked++;
+            ShopGameManager.Instance.dataContainer.keys -= 1;
+
+            SaveData();
         }
 
+        SceneManager.LoadScene("Shop");
+        Time.timeScale = 1f;
     }
+    else
+    {
+        // Shop is locked AND player has no key
+        if (error != null)
+        {
+            error.Play();
+        }
+    }
+}
 
     public void Quit()
     {
