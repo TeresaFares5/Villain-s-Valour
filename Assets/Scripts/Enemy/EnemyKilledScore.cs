@@ -6,11 +6,15 @@ using TMPro;
 public class EnemyKilledScore : MonoBehaviour
 {
     public int enemiesKilled;
-    public TextMeshProUGUI enemiesKilledText;
-    
-    
+
+    public TextMeshProUGUI enemiesKilledText1;
+    public TextMeshProUGUI enemiesKilledText2;
+
     void Update()
     {
-        enemiesKilledText.text = enemiesKilled.ToString();
+        string scoreText = enemiesKilled.ToString();
+
+        enemiesKilledText1.text = scoreText;
+        enemiesKilledText2.text = scoreText;
     }
 }
