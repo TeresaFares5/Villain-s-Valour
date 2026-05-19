@@ -485,7 +485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.1982956, y: -27.3}
+  m_AnchoredPosition: {x: -5.1982956, y: -51.820007}
   m_SizeDelta: {x: 728.3232, y: 313.88}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1212354863
@@ -1057,6 +1057,7 @@ MonoBehaviour:
   speedCost: 0
   creditsCost: 0
   error: {fileID: 0}
+  success: {fileID: 0}
   healthButton: {fileID: 0}
   healthCopper: {fileID: 0}
   healthSilver: {fileID: 0}

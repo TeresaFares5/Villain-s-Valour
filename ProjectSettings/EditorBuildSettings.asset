@@ -8,15 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: f6b820fc860de9d45834a04b88ca4921
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Introduction.unity
     guid: b784f444f3f07c641b2de76e0b366fe8
   - enabled: 1
-    path: Assets/Scenes/Options.unity
-    guid: 49f55774e7143964586ec125b93851ea
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 9ae1a45ef8362824dbb7e98ee5624328
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 49f55774e7143964586ec125b93851ea
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: b14a641b29dade3449fc7cc9ea05e799
@@ -36,3 +36,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Villain2.unity
     guid: 2970c025340aeda478a458989ea21c05
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
