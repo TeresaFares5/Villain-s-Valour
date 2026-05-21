@@ -9,6 +9,7 @@ public class StartGame : MonoBehaviour
     public Image shopLock;
     public AudioSource error;
 
+
     private void Update()
     {
         if (shopLock != null)
@@ -27,16 +28,8 @@ public class StartGame : MonoBehaviour
     public void StartGameplay()
     {
         LoadData();
-        if (ShopGameManager.Instance.dataContainer.tutorial != 0)
-        {
             SceneManager.LoadScene("Villain1");
             Time.timeScale = 1f;
-        }
-        else if (ShopGameManager.Instance.dataContainer.tutorial == 0)
-        {
-            SceneManager.LoadScene("Tutorial");
-            Time.timeScale = 1f;
-        }
 
     }
 public void Shop()

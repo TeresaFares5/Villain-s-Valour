@@ -2485,10 +2485,6 @@ MonoBehaviour:
   strangeHeadAnimator: {fileID: 0}
   hasIceShards: 0
   iceShards: {fileID: 0}
-  spriteRenderer: {fileID: 239059287}
-  damageColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.1
-  flashCount: 3
 --- !u!114 &239059291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2561,6 +2557,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1591751228}
   weaponParent: {fileID: 1413399415}
+  joystick: {fileID: 0}
+  mobileJoystick: {fileID: 0}
+  pauseIcon: {fileID: 0}
+  daggerIcon: {fileID: 0}
   stageTimer: {fileID: 0}
   world: {fileID: 761529337}
   enemy: {fileID: 914076746}
@@ -6451,6 +6451,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 2021543519}
   paused: 0
+  joystick: {fileID: 817116717}
+  mobileJoystick: {fileID: 0}
+  pauseIcon: {fileID: 569533122}
+  daggerIcon: {fileID: 0}
 --- !u!114 &846057740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6463,6 +6467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 791ebd1bb7082834180fb3e6c53124ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseIcon: {fileID: 569533122}
+  joystick: {fileID: 817116717}
+  daggerIcon: {fileID: 0}
+  mobileJoystick: {fileID: 0}
   panel: {fileID: 314109577}
   lvlUp: {fileID: 846057743}
   upgradeButtons:
@@ -6499,7 +6507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesKilled: 0
-  enemiesKilledText: {fileID: 590088787}
+  enemiesKilledText1: {fileID: 0}
+  enemiesKilledText2: {fileID: 0}
 --- !u!82 &846057743
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9877,6 +9886,7 @@ MonoBehaviour:
   - {fileID: 0}
   leaderboardKey: Leaderboard
   maxResults: 10
+  statusText: {fileID: 0}
 --- !u!1 &1413399415
 GameObject:
   m_ObjectHideFlags: 0
