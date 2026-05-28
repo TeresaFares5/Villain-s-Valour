@@ -2,7 +2,7 @@
 
 **Villain's Valour** is a 2D action survival game where the player fights waves of enemies, collects upgrades, earns coins and tries to survive as long as possible. The game features player progression, weapons, upgrades, enemy spawning, UI systems and leaderboard support.
 
-![GameplayImage](URL or Path)
+![GameplayImage](Assets/Itch/Phone Image.png)
 
 ## About the Game
 
