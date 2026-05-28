@@ -30,19 +30,3 @@ In Villain's Valour, the player must survive against incoming enemies while impr
 - LootLocker Leaderboards
 - WebGL / mobile build support
 
-## Project Structure
-
-```txt
-Villains-Valour/
-│
-├── Assets/
-│   ├── Scripts/
-│   ├── Sprites/
-│   ├── Prefabs/
-│   ├── Scenes/
-│   ├── UI/
-│   └── Animations/
-│
-├── ProjectSettings/
-├── Packages/
-└── README.md
